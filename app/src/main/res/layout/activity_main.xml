@@ -4,15 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/common_spacing"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcomeMessage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="66dp"
+        android:layout_height="59dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/welcomeMessage"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:src="@sample/posts_avatars" />
+
+<androidx.constraintlayout.widget.Barrier
+    android:id="@+id/topBarrier"
+    app:constraint_referenced_ids="author,published"
+    app:barrierDirection="bottom"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/published"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@sample/posts.json/data/author" />
+
+    <TextView
+        android:id="@+id/published"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="@+id/author"
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        tools:text="@sample/posts.json/data/published" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBarrier"
+        tools:text="@sample/posts.json/data/content"
+        android:layout_width="0dp"
+        android:autoLink="all"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="124dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
