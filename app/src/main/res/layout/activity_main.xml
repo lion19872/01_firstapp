@@ -70,12 +70,12 @@
 
 
     <ImageView
-        android:id="@+id/imageViewlike"
+        android:id="@+id/like"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintTop_toBottomOf="@id/content"
-        app:srcCompat="@drawable/likes"
+        app:srcCompat="@drawable/ic_like_24"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="266dp" />
 
@@ -85,8 +85,8 @@
         android:layout_height="20dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintLeft_toRightOf="@id/imageViewlike"
-        app:layout_constraintStart_toEndOf="@+id/imageViewlike"
+        app:layout_constraintLeft_toRightOf="@id/like"
+        app:layout_constraintStart_toEndOf="@+id/like"
         app:layout_constraintTop_toBottomOf="@id/content"
         app:srcCompat="@drawable/share" />
 
@@ -102,11 +102,11 @@
         app:srcCompat="@drawable/baseline_remove_red_eye_24" />
 
     <TextView
-        android:id="@+id/likesNumber"
+        android:id="@+id/likeCount"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:text="10"
-        app:layout_constraintStart_toEndOf="@+id/imageViewlike"
+        app:layout_constraintStart_toEndOf="@+id/like"
         app:layout_constraintTop_toBottomOf="@+id/content"
         android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginLeft="5dp"/>
@@ -115,7 +115,7 @@
         android:id="@+id/sharesNumber"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:text="2"
+        android:text="78"
         app:layout_constraintStart_toEndOf="@+id/imageViewShares"
         app:layout_constraintTop_toBottomOf="@+id/content"
         android:layout_marginTop="@dimen/common_spacing"
