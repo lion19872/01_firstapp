@@ -8,6 +8,8 @@ import ru.netology.nmedia.dto.Post
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var sharesCount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
             published = "21 мая в 18:36",
             likedByMe = false
         )
+
+
         with(binding){
             author.text = post.author
             published.text= post.published
@@ -29,20 +33,27 @@ class MainActivity : AppCompatActivity() {
             }
             likeCount?.text = post.likes.toString()
 
-            root.setOnClickListener{
-                Log.d("stuff","stuff")
+            share?.setOnClickListener {
+                Log.d("stuff", "share")
+                sharesCount = sharesCount +10
+                sharesNumber.text = sharesCount.toString()
             }
-            avatar.setOnClickListener{
-                Log.d("stuff","avatar")
-            }
-            like?.setOnClickListener{
+
+             binding.root.setOnClickListener {
+               Log.d("stuff", "stuff")
+              }
+
+            binding.like?.setOnClickListener {
                 Log.d("stuff", "like")
-                post.likedByMe= !post.likedByMe
-                like.setImageResource(
-                    if(post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24
+                post.likedByMe = !post.likedByMe
+                binding.like?.setImageResource(
+                    if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24
                 )
-                    if (post.likedByMe) post.likes++ else post.likes--
-                likeCount?.text = post.likes.toString()
+                if (post.likedByMe) post.likes++ else post.likes--
+                binding.likeCount?.text = post.likes.toString()
+            }
+            binding.avatar.setOnClickListener {
+                Log.d("stuff", "avatar")
             }
         }
     }
