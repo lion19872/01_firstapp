@@ -5,11 +5,11 @@ import android.util.Log
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 
-
-
 class MainActivity : AppCompatActivity() {
 
     private var sharesCount = 0
+    private var likesCount = 999
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -23,38 +23,49 @@ class MainActivity : AppCompatActivity() {
             likedByMe = false
         )
 
-
-        with(binding){
+        with(binding) {
             author.text = post.author
-            published.text= post.published
-            content.text= post.content
-            if(post.likedByMe){
-                like?.setImageResource(R.drawable.ic_liked_24)
+            published.text = post.published
+            content.text = post.content
+            likeCount.text = formatCount(likesCount)
+            sharesNumber.text = formatCount(sharesCount)
+
+            root.setOnClickListener {
+                Log.d("stuff", "stuff")
             }
-            likeCount?.text = post.likes.toString()
+
+            avatar.setOnClickListener {
+                Log.d("stuff", "avatar")
+            }
+
+            like?.setOnClickListener {
+                Log.d("stuff", "like")
+                post.likedByMe = !post.likedByMe
+                if (post.likedByMe) {
+                    likesCount++
+                } else {
+                    likesCount--
+                }
+                likeCount.text = formatCount(likesCount)
+                like.setImageResource(
+                    if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24
+                )
+            }
 
             share?.setOnClickListener {
                 Log.d("stuff", "share")
-                sharesCount = sharesCount +10
-                sharesNumber.text = sharesCount.toString()
+                sharesCount += 100
+                sharesNumber.text = formatCount(sharesCount)
             }
+        }
+    }
 
-             binding.root.setOnClickListener {
-               Log.d("stuff", "stuff")
-              }
-
-            binding.like?.setOnClickListener {
-                Log.d("stuff", "like")
-                post.likedByMe = !post.likedByMe
-                binding.like?.setImageResource(
-                    if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24
-                )
-                if (post.likedByMe) post.likes++ else post.likes--
-                binding.likeCount?.text = post.likes.toString()
-            }
-            binding.avatar.setOnClickListener {
-                Log.d("stuff", "avatar")
-            }
+    private fun formatCount(count: Int): String {
+        return when {
+            count < 1000 -> count.toString()
+            count < 10_000 -> "${count / 1000}K"
+            count < 1_000_000 -> "${count / 1000}.${count % 1000}K"
+            else -> "${count / 1_000_000}M"
         }
     }
 }
