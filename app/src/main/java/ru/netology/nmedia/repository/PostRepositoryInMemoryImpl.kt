@@ -1,5 +1,6 @@
 package ru.netology.nmedia.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
@@ -103,16 +104,29 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun getAll(): LiveData<List<Post>> = data
     override fun likeById(id: Long) {
-        posts = posts.map {
-            if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
+        Log.d("stuff", "like")
+        val updatedPosts = posts.map { post ->
+            if (post.id == id) {
+                post.copy(likedByMe = !post.likedByMe, likes = post.likes + 1)
+            } else {
+                post
+            }
         }
-        data.value = posts
+        data.value = updatedPosts
+
     }
 
+
     override fun shareById(id: Long) {
-        posts = posts.map {
-            it.copy(shares = + 100, likes = + 10, views = + 234)
+        Log.d("stuff", "share")
+        val updatedPosts = posts.map { post ->
+            if (post.id == id) {
+                post.copy(shares = post.shares + 100, likes = post.likes + 10, views = post.views + 234)
+            } else {
+                post
+            }
         }
-        data.value = posts
+        data.value = updatedPosts
+
     }
 }
