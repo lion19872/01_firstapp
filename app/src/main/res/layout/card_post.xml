@@ -112,7 +112,7 @@
         android:layout_marginLeft="5dp" />
 
     <TextView
-        android:id="@+id/sharesNumber"
+        android:id="@+id/sharesCounter"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:text="999"
