@@ -5,9 +5,8 @@ data class Post(
     val author: String,
     val content: String,
     val published: String,
-    val likes: Int,
-    val likedByMe: Boolean = false,
+    val likedByMe: Boolean,
+    val likes: Int = 0,
     val shares: Int,
     val views: Int
 )
- //this class is missing

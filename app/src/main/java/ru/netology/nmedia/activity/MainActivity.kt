@@ -3,8 +3,10 @@ package ru.netology.nmedia.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
@@ -16,20 +18,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        val adapter = PostsAdapter(
-            onLikeListener = { post ->
-                viewModel.likeById(post.id)
-            },
-            onShareListener = { post ->
-                viewModel.shareById(post.id)
-            }
+        val adapter = PostsAdapter (
+            onLike = { it -> viewModel.likeById(it.id) },
+            onShare = { it -> viewModel.shareById(it.id) }
         )
-        binding.list.adapter = adapter
-        viewModel.data.observe(this) { posts: List<Post> ->
+        viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
+        binding.root.adapter = adapter
     }
 }
+
 private fun formatCount(count: Int): String {
     return when {
         count < 1000 -> count.toString()
