@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
@@ -8,6 +9,7 @@ import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.utils.AndroidUtils
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
@@ -18,14 +20,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        val adapter = PostsAdapter (
+        val adapter = PostsAdapter(
             onLike = { it -> viewModel.likeById(it.id) },
-            onShare = { it -> viewModel.shareById(it.id) }
+            onShare = { it -> viewModel.shareById(it.id) },
+            onRemove = { it -> viewModel.removeById(it.id) }
         )
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
-        binding.root.adapter = adapter
+        binding.save.setOnClickListener {
+            val text = binding.content.text.toString().trim()
+            if (text.isEmpty()) {
+                Toast.makeText(this, R.string.error_empty_content, Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            viewModel.changeContentAndSave(text)
+            binding.content.setText("")
+            binding.content.clearFocus()
+            AndroidUtils.hideKeyboard(it)
+        }
     }
 }
 

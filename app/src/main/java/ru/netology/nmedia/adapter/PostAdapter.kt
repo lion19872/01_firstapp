@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,14 +12,18 @@ import ru.netology.nmedia.dto.Post
 
 typealias onLikeListener = (Post) -> Unit
 typealias onShareListener = (Post) -> Unit
+typealias onRemoveListener = (Post) -> Unit
 
-class PostsAdapter(private val onLike: onLikeListener, private val onShare: onShareListener) :
-    ListAdapter<Post, PostViewHolder>(PostDiffCallBack) {
+class PostsAdapter(
+    private val onLike: onLikeListener,
+    private val onShare: onShareListener,
+    private val onRemove: onRemoveListener
+) : ListAdapter<Post, PostViewHolder>(PostDiffCallBack) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(view, onLike, onShare)
+        return PostViewHolder(view, onLike, onShare, onRemove)
 
     }
 
@@ -30,9 +35,9 @@ class PostsAdapter(private val onLike: onLikeListener, private val onShare: onSh
 class PostViewHolder(
     private val binding: CardPostBinding,
     private val onLike: onLikeListener,
-    private val onShare: onShareListener
-) :
-    RecyclerView.ViewHolder(binding.root) {
+    private val onShare: onShareListener,
+    private val onRemove: onRemoveListener
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         with(binding) {
             author.text = post.author
@@ -47,8 +52,23 @@ class PostViewHolder(
             like.setOnClickListener {
                 onLike(post)
             }
-            share.setOnClickListener{
+            share.setOnClickListener {
                 onShare(post)
+            }
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.options_menu)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                onRemove(post)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
+                }.show()
             }
         }
     }

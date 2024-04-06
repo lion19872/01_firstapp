@@ -27,7 +27,7 @@
         android:layout_height="19dp"
         android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewMenu"
+        app:layout_constraintEnd_toStartOf="@+id/menu"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="parent"
@@ -132,11 +132,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content" />
 
-    <ImageView
-        android:id="@+id/imageViewMenu"
+    <ImageButton
+        android:id="@+id/menu"
         android:layout_width="20dp"
         android:layout_height="19dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/author"
         app:srcCompat="@drawable/_52549_more_vert_icon"
         tools:layout_editor_absoluteY="0dp" />
 
