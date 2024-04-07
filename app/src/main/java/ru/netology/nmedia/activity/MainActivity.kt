@@ -25,8 +25,15 @@ class MainActivity : AppCompatActivity() {
             onShare = { it -> viewModel.shareById(it.id) },
             onRemove = { it -> viewModel.removeById(it.id) }
         )
+        binding.list.adapter = adapter
         viewModel.data.observe(this) { posts ->
-            adapter.submitList(posts)
+            val newPost = adapter.currentList.size < posts.size && adapter.currentList.size > 0
+            adapter.submitList(posts) {
+                if (newPost) {
+                    binding.list.smoothScrollToPosition(0)
+                }
+            }
+
         }
         binding.save.setOnClickListener {
             val text = binding.content.text.toString().trim()
