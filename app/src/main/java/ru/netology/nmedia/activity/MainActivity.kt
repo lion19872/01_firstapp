@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 binding.group.visibility = View.VISIBLE
             }
         }
-        binding.editCancel.setOnClickListener{
+        binding.editCancel.setOnClickListener {
             binding.group.visibility = View.GONE
             binding.newPostContent.setText("")
             binding.newPostContent.clearFocus()
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeContentAndSave(text)
             binding.newPostContent.setText("")
             binding.newPostContent.clearFocus()
+            binding.group.visibility = View.GONE
             AndroidUtils.hideKeyboard(it)
         }
     }
