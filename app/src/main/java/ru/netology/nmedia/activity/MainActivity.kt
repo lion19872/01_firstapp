@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.edited(post)
             }
 
+
         })
         binding.list.adapter = adapter
         viewModel.data.observe(this) { posts ->
@@ -62,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             binding.newPostContent.setText("")
             binding.newPostContent.clearFocus()
             AndroidUtils.hideKeyboard(it)
+            viewModel.clearEditField()
+
         }
         binding.save.setOnClickListener {
             val text = binding.newPostContent.text.toString().trim()
