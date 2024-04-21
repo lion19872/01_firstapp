@@ -2,7 +2,6 @@
 <resources>
     <string name="welcomeMessage">Welcome to My Program!</string>
     <string name="app_name">NMedia</string>
-    <string name="hello">Hello World!</string>
     <string name="description_post_author_avatar">Post author avatar</string>
     <string name="description_post_menu">Post menu</string>
     <string name="description_post_like">Like</string>
