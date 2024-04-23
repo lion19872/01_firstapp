@@ -43,7 +43,7 @@ class PostViewHolder(
             published.text = post.published
             content.text = post.content
 
-            like.isCheckable = post.likedByMe
+            like.isChecked = post.likedByMe
             like.text = "${post.likes}"
 
  /*           like.setImageResource(
@@ -51,8 +51,8 @@ class PostViewHolder(
             )*/
 
             like.text = post.likes.toString()
-           // sharesNumber.text = post.shares.toString()
-            //views.text = post.views.toString()
+            sharesNumber.text = post.shares.toString()
+            views.text = post.views.toString()
             like.setOnClickListener {
                 onInteractionListener.onLike(post)
             }

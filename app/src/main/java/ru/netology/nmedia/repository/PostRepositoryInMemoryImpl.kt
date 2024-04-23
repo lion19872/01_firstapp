@@ -15,7 +15,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "23 сентября в 10:12",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 0,
             views = 1021
         ),
         Post(
@@ -25,7 +25,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "22 сентября в 10:14",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 89,
             views = 1021
         ),
         Post(
@@ -35,7 +35,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "22 сентября в 10:12",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 57,
             views = 1021
         ),
         Post(
@@ -45,7 +45,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "21 сентября в 10:12",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 35,
             views = 1021
         ),
         Post(
@@ -55,7 +55,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "20 сентября в 10:14",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 47,
             views = 1021
         ),
         Post(
@@ -65,7 +65,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "21 мая в 18:36",
             likedByMe = false,
             shares = 999,
-            likes = 99,
+            likes = 53,
             views = 1021
         ),
     )

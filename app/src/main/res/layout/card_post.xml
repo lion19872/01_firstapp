@@ -52,6 +52,25 @@
             app:layout_constraintTop_toBottomOf="@id/author"
             tools:text="@sample/posts.json/data/published" />
 
+        <ImageView
+            android:id="@+id/imageViewViewes"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/common_spacing"
+            android:layout_marginTop="@dimen/common_spacing"
+            app:layout_constraintEnd_toStartOf="@+id/views"
+            app:layout_constraintTop_toBottomOf="@+id/content"
+            app:srcCompat="@drawable/baseline_remove_red_eye_24" />
+
+
+        <TextView
+            android:id="@+id/views"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="1021"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageViewViewes" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/menu"
             android:layout_width="wrap_content"
@@ -59,6 +78,7 @@
             android:layout_marginBottom="@dimen/common_spacing"
             android:contentDescription="@string/description_post_menu"
             app:icon="@drawable/_52549_more_vert_icon"
+            app:iconTint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.AppTheme.IconButton"
@@ -103,30 +123,39 @@
             tools:text="@sample/posts.json/data/likes"
             style="@style/Widget.AppTheme.LikeCheckBox"/-->
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
             android:contentDescription="@string/description_post_like"
+            android:text="101"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/footer"
-            app:icon="@drawable/ic_like_24"
+            android:button="@drawable/like_selector"
             tools:checked="@sample/posts.json/data/likedByMe"
-            tools:text="@sample/posts.json/data/likes"
-            style="@style/Widget.AppTheme.LikeButton"
+            style=tint
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/share"
+            style="@style/Widget.AppTheme.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_spacing"
             android:contentDescription="@string/description_post_share"
-            app:layout_constraintStart_toEndOf="@+id/like"
-            app:layout_constraintTop_toBottomOf="@id/footer"
             app:icon="@drawable/share"
-            style="@style/Widget.AppTheme.IconButton"
-            />
+            app:iconTint="#3F51B5"
+            app:layout_constraintStart_toEndOf="@+id/like"
+            app:layout_constraintTop_toBottomOf="@id/footer" />
+
+        <TextView
+            android:id="@+id/sharesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:text="999"
+            app:layout_constraintStart_toEndOf="@+id/share"
+            app:layout_constraintTop_toBottomOf="@+id/content" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

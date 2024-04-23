@@ -12,8 +12,8 @@
     </style>
 
     <style name="Widget.AppTheme.LikeCheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/like_checkbox_tint</item>
-        <item name="android:paddingStart">@dimen/icon_button_padding</item>
+        <item name="buttonTint">#ff0000</item>
+
     </style>
 
     <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
