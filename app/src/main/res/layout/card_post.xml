@@ -123,7 +123,7 @@
             tools:text="@sample/posts.json/data/likes"
             style="@style/Widget.AppTheme.LikeCheckBox"/-->
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,8 +132,11 @@
             android:text="101"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/footer"
+            app:icon="@drawable/like_selector"
             android:button="@drawable/like_selector"
+            app:buttonTint="@color/colorControlNormal"
             tools:checked="@sample/posts.json/data/likedByMe"
+            style="@style/Widget.AppTheme.LikeButton"
             />
 
         <com.google.android.material.button.MaterialButton
