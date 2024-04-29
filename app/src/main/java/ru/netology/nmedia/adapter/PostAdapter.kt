@@ -46,13 +46,13 @@ class PostViewHolder(
             like.isChecked = post.likedByMe
             like.text = "${post.likes}"
 
- /*           like.setImageResource(
-                if (post.likedByMe) R.drawable.like_selector else R.drawable.ic_like_24
-            )*/
+            /*           like.setImageResource(
+                           if (post.likedByMe) R.drawable.like_selector else R.drawable.ic_like_24
+                       )*/
 
-            like.text = post.likes.toString()
-            sharesNumber.text = post.shares.toString()
-            views.text = post.views.toString()
+            like.text = formatCount(post.likes)
+            share.text = formatCount(post.shares)
+            views.text = formatCount(post.views)
             like.setOnClickListener {
                 onInteractionListener.onLike(post)
             }
@@ -90,4 +90,13 @@ object PostDiffCallBack : DiffUtil.ItemCallback<Post>() {
 
     override fun areContentsTheSame(oldItem: Post, newItem: Post) = oldItem == newItem
 
+}
+
+private fun formatCount(count: Int): String {
+    return when {
+        count < 1000 -> count.toString()
+        count < 10_000 -> "${count / 1000}K"
+        count < 1_000_000 -> "${count / 1000}.${count % 1000}K"
+        else -> "${count / 1_000_000}M"
+    }
 }

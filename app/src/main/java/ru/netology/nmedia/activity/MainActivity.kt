@@ -81,12 +81,5 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private fun formatCount(count: Int): String {
-    return when {
-        count < 1000 -> count.toString()
-        count < 10_000 -> "${count / 1000}K"
-        count < 1_000_000 -> "${count / 1000}.${count % 1000}K"
-        else -> "${count / 1_000_000}M"
-    }
-}
+
 

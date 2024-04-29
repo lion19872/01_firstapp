@@ -26,7 +26,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             shares = 999,
             likes = 89,
-            views = 1021
+            views = 1021000
         ),
         Post(
             nextId++,
@@ -46,7 +46,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             shares = 999,
             likes = 35,
-            views = 1021
+            views = 102100
         ),
         Post(
             nextId++,
@@ -54,9 +54,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             content = "Диджитал давно стал частью нашей жизни: мы общаемся в социальных сетях и мессенджерах, заказываем еду, такси и оплачиваем счета через приложения.",
             published = "20 сентября в 10:14",
             likedByMe = false,
-            shares = 999,
-            likes = 47,
-            views = 1021
+            shares = 1,
+            likes = 0,
+            views = 2
         ),
         Post(
             nextId++,
