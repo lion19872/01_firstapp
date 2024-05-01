@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+
+        val newPostLauncher=registerForActivityResult(NewPostContract){result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContentAndSave(result)
+        }
         val adapter = PostsAdapter(object : onInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
@@ -60,30 +66,21 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel.edited.observe(this) { post ->
             if (post.id != 0L) {
-                binding.newPostContent.setText(post.content)
-                binding.newPostContent.focusAndShowKeyboard()
+/*                binding.newPostContent.setText(post.content)
+                binding.newPostContent.focusAndShowKeyboard()*/
                 binding.group.visibility = View.VISIBLE
             }
         }
-        binding.editCancel.setOnClickListener {
+/*        binding.editCancel.setOnClickListener {
             binding.group.visibility = View.GONE
             binding.newPostContent.setText("")
             binding.newPostContent.clearFocus()
             AndroidUtils.hideKeyboard(it)
             viewModel.clearEditField()
 
-        }
-        binding.save.setOnClickListener {
-            val text = binding.newPostContent.text.toString().trim()
-            if (text.isEmpty()) {
-                Toast.makeText(this, R.string.error_empty_content, Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            viewModel.changeContentAndSave(text)
-            binding.newPostContent.setText("")
-            binding.newPostContent.clearFocus()
-            binding.group.visibility = View.GONE
-            AndroidUtils.hideKeyboard(it)
+        }*/
+        binding.add.setOnClickListener {
+            newPostLauncher.launch()
         }
     }
 }
