@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     type = "text/plain"
+
                     putExtra(Intent.EXTRA_TEXT, post.content)
                 }
                 val chooser = Intent.createChooser(intent, getString(R.string.chooser_share_post))

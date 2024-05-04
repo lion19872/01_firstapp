@@ -15,7 +15,6 @@ class NewPostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityNewPostBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
         binding.ok.setOnClickListener{
             val text = binding.edit.text.toString()
