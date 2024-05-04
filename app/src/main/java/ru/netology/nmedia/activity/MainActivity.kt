@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             if (post.id != 0L) {
                 /*                binding.newPostContent.setText(post.content)
                                 binding.newPostContent.focusAndShowKeyboard()*/
-                binding.group.visibility = View.VISIBLE
             }
         }
         /*        binding.editCancel.setOnClickListener {
