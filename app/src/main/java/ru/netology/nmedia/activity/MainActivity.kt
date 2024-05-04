@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
-        val newPostLauncher=registerForActivityResult(NewPostContract){result ->
+        val newPostLauncher = registerForActivityResult(NewPostContract) { result ->
             result ?: return@registerForActivityResult
             viewModel.changeContentAndSave(result)
         }
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     putExtra(Intent.EXTRA_TEXT, post.content)
                 }
                 val chooser = Intent.createChooser(intent, getString(R.string.chooser_share_post))
-                startActivity(intent)
+                startActivity(chooser)
             }
 
             override fun onRemove(post: Post) {
@@ -66,19 +66,19 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel.edited.observe(this) { post ->
             if (post.id != 0L) {
-/*                binding.newPostContent.setText(post.content)
-                binding.newPostContent.focusAndShowKeyboard()*/
+                /*                binding.newPostContent.setText(post.content)
+                                binding.newPostContent.focusAndShowKeyboard()*/
                 binding.group.visibility = View.VISIBLE
             }
         }
-/*        binding.editCancel.setOnClickListener {
-            binding.group.visibility = View.GONE
-            binding.newPostContent.setText("")
-            binding.newPostContent.clearFocus()
-            AndroidUtils.hideKeyboard(it)
-            viewModel.clearEditField()
+        /*        binding.editCancel.setOnClickListener {
+                    binding.group.visibility = View.GONE
+                    binding.newPostContent.setText("")
+                    binding.newPostContent.clearFocus()
+                    AndroidUtils.hideKeyboard(it)
+                    viewModel.clearEditField()
 
-        }*/
+                }*/
         binding.add.setOnClickListener {
             newPostLauncher.launch()
         }
