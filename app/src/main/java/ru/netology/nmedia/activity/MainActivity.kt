@@ -1,20 +1,16 @@
 package ru.netology.nmedia.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.adapter.onInteractionListener
+import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.utils.AndroidUtils
-import ru.netology.nmedia.utils.AndroidUtils.focusAndShowKeyboard
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
@@ -30,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             result ?: return@registerForActivityResult
             viewModel.changeContentAndSave(result)
         }
-        val adapter = PostsAdapter(object : onInteractionListener {
+        val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
@@ -39,7 +35,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     type = "text/plain"
-
                     putExtra(Intent.EXTRA_TEXT, post.content)
                 }
                 val chooser = Intent.createChooser(intent, getString(R.string.chooser_share_post))
@@ -65,20 +60,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.edited.observe(this) { post ->
-            if (post.id != 0L) {
-                /*                binding.newPostContent.setText(post.content)
-                                binding.newPostContent.focusAndShowKeyboard()*/
-            }
-        }
-        /*        binding.editCancel.setOnClickListener {
-                    binding.group.visibility = View.GONE
-                    binding.newPostContent.setText("")
-                    binding.newPostContent.clearFocus()
-                    AndroidUtils.hideKeyboard(it)
-                    viewModel.clearEditField()
 
-                }*/
         binding.add.setOnClickListener {
             newPostLauncher.launch()
         }

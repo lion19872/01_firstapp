@@ -10,7 +10,7 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 
-interface onInteractionListener {
+interface OnInteractionListener {
     fun onLike(post: Post)
     fun onShare(post: Post)
     fun onRemove(post: Post)
@@ -18,7 +18,7 @@ interface onInteractionListener {
 }
 
 class PostsAdapter(
-    private val onInteractionListener: onInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallBack) {
 
 
@@ -35,7 +35,7 @@ class PostsAdapter(
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val onInteractionListener: onInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         with(binding) {
